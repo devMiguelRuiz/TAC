@@ -212,6 +212,7 @@
     <Content Include="Fonts\open-sans-v13-latin-regular.ttf" />
     <Content Include="Fonts\open-sans-v13-latin-regular.woff" />
     <Content Include="Fonts\open-sans-v13-latin-regular.woff2" />
+    <None Include="App_Config\Include\TAC\Events\events.site.config" />
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
