@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TAC.Feature.Language.Models.Country>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="@item.Url"><img src="@item.ImageUrl" alt="@item.Name" title="@item.Name" />@item.Name</a></li>
+    }
+</ul>

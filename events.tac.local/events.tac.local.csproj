@@ -100,12 +100,17 @@
     <Compile Include="Business\BreadcrumbBuilder.cs" />
     <Compile Include="Controllers\BreadcrumbController.cs" />
     <Compile Include="Controllers\EventIntroController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\EventIntro.cs" />
     <Compile Include="Business\NavigationBuilder.cs" />
+    <Compile Include="Models\ICountry.cs" />
     <Compile Include="Models\NavigationItem.cs" />
     <Compile Include="Models\NavigationMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CountryRepository.cs" />
+    <Compile Include="Repositories\ICountryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\addition.css" />
@@ -212,7 +217,11 @@
     <Content Include="Fonts\open-sans-v13-latin-regular.ttf" />
     <Content Include="Fonts\open-sans-v13-latin-regular.woff" />
     <Content Include="Fonts\open-sans-v13-latin-regular.woff2" />
+    <Content Include="App_Config\Include\TAC\Careers\careers.site.config" />
     <None Include="App_Config\Include\TAC\Events\events.site.config" />
+    <None Include="App_Config\Sitecore\CMS.Core\Custom\Sitecore.LanguageFallback.Custom.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
@@ -227,6 +236,7 @@
     <Content Include="Views\TAC\Events\FeaturedEvent.cshtml" />
     <Content Include="Views\Breadcrumb\Index.cshtml" />
     <Content Include="Views\Navigation\Index.cshtml" />
+    <Content Include="Views\Language\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
