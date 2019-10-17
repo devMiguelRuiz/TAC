@@ -1,16 +1,21 @@
-﻿@model IEnumerable<events.tac.local.Models.NavigationItem>
-<!-- [Related Events] -->
-<div class="bg-primary side-widget">
-    <h4 class="text-uppercase">Other events you will like</h4>
-    <div class="sidebar">
-        <ul class="nav nav-pills nav-stacked">
-            @foreach (var navItem in Model)
-            {
-                <li>
-                    <a href="@navItem.URL">@navItem.Title</a>
-                </li>
-            }
-        </ul>
+﻿@using Sitecore.Mvc.Extensions
+@model IEnumerable<events.tac.local.Models.NavigationItem>
+
+@using (Html.EditFrame(RenderingContext.Current.ContextItem.Paths.FullPath, "Related Events", "Edit Related Events", null, null, null))
+{
+    <!-- [Related Events] -->
+    <div class="bg-primary side-widget">
+        <h4 class="text-uppercase">Other events you will like</h4>
+        <div class="sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                @foreach (var navItem in Model)
+                {
+                    <li>
+                        <a href="@navItem.URL">@navItem.Title</a>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
-</div>
-<!-- [/Related Events] -->
+    <!-- [/Related Events] -->
+}
