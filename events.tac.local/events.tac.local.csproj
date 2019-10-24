@@ -44,6 +44,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sitecore.ContentSearch, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.ContentSearch.NoReferences.9.0.180604\lib\NET462\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.ContentSearch.Linq.NoReferences.9.0.180604\lib\NET462\Sitecore.ContentSearch.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Kernel.NoReferences.9.0.0\lib\net461\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -69,6 +75,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="TAC.Utils">
+      <HintPath>References\TAC.Utils.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -98,15 +107,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\BreadcrumbBuilder.cs" />
+    <Compile Include="Business\EventsProvider.cs" />
     <Compile Include="Business\RelatedEventsProvider.cs" />
     <Compile Include="Controllers\BreadcrumbController.cs" />
     <Compile Include="Controllers\EventIntroController.cs" />
+    <Compile Include="Controllers\EventListController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RelatedEventsController.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\EventDetails.cs" />
     <Compile Include="Models\EventIntro.cs" />
     <Compile Include="Business\NavigationBuilder.cs" />
+    <Compile Include="Models\EventList.cs" />
     <Compile Include="Models\ICountry.cs" />
     <Compile Include="Models\NavigationItem.cs" />
     <Compile Include="Models\NavigationMenuItem.cs" />
@@ -243,6 +256,7 @@
     <Content Include="Views\Navigation\Index.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
     <Content Include="Views\RelatedEvents\Index.cshtml" />
+    <Content Include="Views\EventList\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
