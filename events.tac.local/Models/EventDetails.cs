@@ -10,6 +10,8 @@ namespace events.tac.local.Models
         public string ContentHeading { get; set; }
         public string ContentIntro { get; set; }
         public DateTime StartDate { get; set; }
+        public int Duration { get; set; }
+        public int DifficultyLevel { get; set; }
         public HtmlString EventImage
         {
             get

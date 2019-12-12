@@ -1,0 +1,28 @@
+﻿@using TAC.Utils.Helpers
+@model events.tac.local.Models.EventList
+
+<ol class="media-list">
+    @foreach (var eventDetail in Model.Events)
+    {
+        <li class="media media-align-middle">
+            <div class="media-left">
+                <a href="@eventDetail.Url">@eventDetail.EventImage</a>
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">
+                    <a href="@eventDetail.Url">@eventDetail.ContentHeading</a>
+                </h3>
+                <div class="description">
+                    <p>@eventDetail.ContentIntro</p>
+
+                </div>
+            </div>
+            <div class="metadata well">
+                <span>Difficulty Level: @eventDetail.DifficultyLevel</span><br />
+                <span>Duration: @eventDetail.Duration</span><br />
+                <span>@eventDetail.StartDate</span>
+            </div>
+        </li>
+    }
+</ol>
+@*@Html.Pager(Model.PageSize, Model.TotalResultCount)*@

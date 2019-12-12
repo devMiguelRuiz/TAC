@@ -1,26 +1,68 @@
-﻿@using TAC.Utils.Helpers
+﻿@using Sitecore.ContentSearch.Linq;
 @model events.tac.local.Models.EventList
-<!-- [Event List] -->
-<div class="content-list newslist">
-    <ol class="media-list">
-        @foreach (var eventDetail in Model.Events)
-        {
-            <li class="media media-align-middle">
-                <div class="media-left">
-                    <a href="@eventDetail.Url">@eventDetail.EventImage</a>
-                </div>
-                <div class="media-body">
-                    <h3 class="media-heading">
-                        <a href="@eventDetail.Url">@eventDetail.ContentHeading</a>
-                    </h3>
-                    <div class="description">
-                        <p>@eventDetail.ContentIntro</p>
-                    </div>
-                </div>
-                <div class="metadata well">@eventDetail.StartDate</div>
-            </li>
-        }
-    </ol>
+
+
+<div class="facets col-md-2">
+    @foreach (FacetCategory facetCategory in Model.Facets.Categories)
+    {
+        <fieldset>
+            <legend><b>@facetCategory.Name</b></legend>
+            @foreach (var facetValue in facetCategory.Values)
+            {
+                <span><input type='checkbox' name='@facetCategory.Name' value='@facetValue.Name' /> @facetValue.Name</span><br />
+            }
+        </fieldset>
+    }
+    <input type="hidden" id="page" value="@ViewBag.Page" />
+    <input type="hidden" id="database" value="@ViewBag.Database" />
+    <input type="hidden" id="language" value="@ViewBag.Language" />
+    <input type="hidden" id="contextId" value="@ViewBag.ContextId" />
+
+    <button id="FilterButton">Search</button>
 </div>
-@Html.Pager(Model.PageSize, Model.TotalResultCount)
-<!-- [Event List] -->
+
+<div class="content-list newslist col-md-10">
+    <div id="eventsContainer">
+        @{
+            Html.RenderPartial("List", Model);
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        function loadEvents() {
+
+            var durations = []
+            $("input[name=duration]:checked").each(function () {
+                durations.push(parseInt($(this).val()));
+            });
+
+            var difficultyLevels = []
+            $("input[name=difficultylevel]:checked").each(function () {
+                difficultyLevels.push(parseInt($(this).val()));
+            });
+
+            var parameters = {
+                page: $('#page').val(),
+                database: $('#database').val(),
+                language: $('#language').val(),
+                contextId: $('#contextId').val(),
+                duration: durations,
+                difficultylevel: difficultyLevels
+            };
+
+            $.ajaxSettings.traditional = true;
+            $.get({ url: "/api/sitecore/EventList/GetEvents", data: $.param(parameters) })
+                .done(function (html) {
+                    $('#eventsContainer').html(html);
+                })
+                .fail(function (xhr, status, error) { alert(xhr + ' -- ' + status + ' -- ' + error) })
+        }
+
+        $("#FilterButton").bind("click", function () {
+            loadEvents();
+        });
+    });
+</script>
