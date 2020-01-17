@@ -1,8 +1,14 @@
 ﻿@using Sitecore.ContentSearch.Linq;
+@using TAC.Utils.Helpers
 @model events.tac.local.Models.EventList
 
+@{
+    int page = int.Parse(ViewBag.Page.ToString());
+}
 
 <div class="facets col-md-2">
+    <span> Search: <input type="search" name="search" id="search" /></span><br /><br />
+
     @foreach (FacetCategory facetCategory in Model.Facets.Categories)
     {
         <fieldset>
@@ -29,6 +35,9 @@
     </div>
 </div>
 
+<div>
+    @Html.Pager(Model.PageSize, Model.TotalResultCount, page)
+</div>
 <script type="text/javascript">
 
     $(function () {
@@ -49,11 +58,13 @@
                 database: $('#database').val(),
                 language: $('#language').val(),
                 contextId: $('#contextId').val(),
+                search: $('#search').val(),
                 duration: durations,
-                difficultylevel: difficultyLevels
+                difficultyLevel: difficultyLevels
             };
 
             $.ajaxSettings.traditional = true;
+
             $.get({ url: "/api/sitecore/EventList/GetEvents", data: $.param(parameters) })
                 .done(function (html) {
                     $('#eventsContainer').html(html);

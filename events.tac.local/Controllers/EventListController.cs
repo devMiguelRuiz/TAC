@@ -8,8 +8,8 @@ namespace events.tac.local.Controllers
 {
     public class EventListController : Controller
     {
-        private const string durationParam = "duration[]";
-        private const string difficultyParam = "difficultylevel[]";
+        private const string DurationParam = "duration[]";
+        private const string DifficultyParam = "difficultyLevel[]";
 
         private readonly EventsProvider _provider;
 
@@ -37,30 +37,24 @@ namespace events.tac.local.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetEvents(int page, int[] duration, int[] difficultylevel, string contextId, string language, string database)
+        public ActionResult GetEvents(int page, string search, string contextId, string language, string database)
         {
             ViewBag.Page = page;
-
-            if (duration == null)
-            {
-
-                duration = Request.QueryString[durationParam] != null
-                    ? Request.QueryString[durationParam].ToString().Split(',').Select(x => int.Parse(x)).ToArray()
-                    : new int[0];
-            }
-
-            if (difficultylevel == null)
-            {
-                difficultylevel = Request.QueryString[difficultyParam] != null
-                    ? Request.QueryString[difficultyParam].ToString().Split(',').Select(x => int.Parse(x)).ToArray()
-                    : new int[0];
-            }
+            int[] duration = QueryStringToIntArray(DurationParam);
+            int[] difficultyLevel = QueryStringToIntArray(DifficultyParam);
 
             Database db = Sitecore.Configuration.Factory.GetDatabase(database);
             var item = db.GetItem(contextId);
 
-            var result = _provider.GetEventList(page, duration, difficultylevel, item.ID,language,database);
+            var result = _provider.GetEventList(page, search, duration, difficultyLevel, item.ID, language, database);
             return View("List", result);
+        }
+
+        private int[] QueryStringToIntArray(string stringName)
+        {
+            return Request.QueryString[stringName] != null
+                ? Request.QueryString[stringName].Split(',').Select(int.Parse).ToArray()
+                : new int[0];
         }
     }
 }

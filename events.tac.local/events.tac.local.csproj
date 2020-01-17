@@ -62,6 +62,9 @@
     <Reference Include="Sitecore.Mvc.Analytics, Version=11.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Mvc.Analytics.NoReferences.9.0.0\lib\net461\Sitecore.Mvc.Analytics.dll</HintPath>
     </Reference>
+    <Reference Include="SitecoreFriendlyErrors, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sitecore.FriendlyErrors.1.0.3\lib\net452\SitecoreFriendlyErrors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -134,6 +137,8 @@
     <Compile Include="Repositories\ICountryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
+    <Content Include="500.aspx" />
     <Content Include="Css\addition.css" />
     <Content Include="Css\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="Css\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -243,13 +248,16 @@
     <None Include="App_Config\Include\TAC\Events\events.site.config" />
     <None Include="App_Config\Include\TAC\Events\Solr.Events.Master.Index.config" />
     <None Include="App_Config\Include\TAC\Events\Solr.Events.Web.Index.config" />
+    <Content Include="App_Config\Include\Z.SitecoreFriendlyErrors.config" />
     <None Include="App_Config\Sitecore\CMS.Core\Custom\Sitecore.LanguageFallback.Custom.config">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Areas\Importer\Views\web.config" />
     <Content Include="Areas\Importer\Views\Shared\Layout.cshtml" />
     <Content Include="Areas\Importer\Views\Events\Index.cshtml" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
